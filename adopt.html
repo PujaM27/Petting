@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(26, 26, 46, 0.95), rgba(26, 26, 46, 0.95)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding-top: 80px;
+            color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff69b4;
+            color: #ffffff;
+        }
+
+        /* Pets Grid */
+        .pets-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(rgba(39, 41, 61, 0.8), rgba(39, 41, 61, 0.8)),
+                        url('assets/images/pets-collage.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+        }
+
+        .pet-card {
+            background-color: #27293d;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .pet-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .pet-card h3 {
+            color: #ff69b4;
+            padding: 15px 15px 5px;
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .pet-card p {
+            padding: 0 15px 15px;
+            color: #ffffff;
+            margin: 5px 0;
+        }
+
+        .pet-card a {
+            display: block;
+            background-color: #ff69b4;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .pet-card a:hover {
+            background-color: #ff1493;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #ff69b4;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #ff69b4;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="adopt.html">Adopt</a></li>
+            <li><a href="ai-recommendation.html">AI Recommendation</a></li>
+            <li><a href="why-adopt.html">Why Adopt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Pets List Section -->
+    <section class="pets-list" id="pet-list">
+        <div class="pet-card">
+            <img src="assets/images/cat1.jpg" alt="Cute Pet">
+            <h3>Fluffy</h3>
+            <p>Age: 11 months | Breed: Cutie</p>
+            <a href="profile.html?name=Fluffy&age=11 months&breed=Cutie&image=assets/images/cat1.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/cat2.jpg" alt="Cute Pet">
+            <h3>Pookie</h3>
+            <p>Age: 1 Year | Breed: Homely vibes</p>
+            <a href="profile.html?name=Pookie&age=1 Year&breed=Homely vibes&image=assets/images/cat2.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/cat3.jpg" alt="Cute Pet">
+            <h3>Cutie</h3>
+            <p>Age: 1 Year | Breed: Queen beauty</p>
+            <a href="profile.html?name=Cutie&age=1 Year&breed=Queen beauty&image=assets/images/cat3.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/dog1.jpg" alt="Cute Pet">
+            <h3>Butter</h3>
+            <p>Age: 2 Years | Breed: Pure Indian</p>
+            <a href="profile.html?name=Butter&age=2 Years&breed=Pure Indian&image=assets/images/dog1.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/dog2.jpg" alt="Cute Pet">
+            <h3>Musky</h3>
+            <p>Age: 3 Years | Breed: Huggable</p>
+            <a href="profile.html?name=Musky&age=3 Years&breed=Huggable&image=assets/images/dog2.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/dog3.jpg" alt="Cute Pet">
+            <h3>Toothsy</h3>
+            <p>Age: 2 Years | Breed: Happyland</p>
+            <a href="profile.html?name=Toothsy&age=2 Years&breed=Happyland&image=assets/images/dog3.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/kitt1.jpg" alt="Cute Pet">
+            <h3>Lolly</h3>
+            <p>Age: 2 months | Breed: Disneyy</p>
+            <a href="profile.html?name=Lolly&age=7 months&breed=Disneyy&image=assets/images/kitt1.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/pupp1.jpg" alt="Cute Pet">
+            <h3>Sheryy</h3>
+            <p>Age: 5 months | Breed: Wonderland</p>
+            <a href="profile.html?name=Sheryy&age=5 months&breed=Wonderland&image=assets/images/pupp1.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/Goluu.jpg" alt="Cute Pet">
+            <h3>Goluu</h3>
+            <p>Age: 3 years | Breed: Gulabganj</p>
+            <a href="profile.html?name=Goluu&age=3 years&breed=Gulabganj&image=assets/images/Goluu.jpg">Adopt Me</a>
+        </div>
+        <div class="pet-card">
+            <img src="assets/images/fuzzy.jpg" alt="Cute Pet">
+            <h3>Fuzzy</h3>
+            <p>Age: 3 months | Breed: Kingland</p>
+            <a href="profile.html?name=Fuzzy&age=3 years&breed=Kingland&image=assets/images/fuzzy.jpg">Adopt Me</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PettingPets | All Rights Reserved</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/pujamazumdar/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/_puja_m27_/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/__sweetooth_" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

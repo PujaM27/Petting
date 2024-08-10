@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PettingPets Pet Adoption</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        /* Hero Section */
+        #hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('assets/images/hero-pets.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.057);
+            color: #ff69b4;
+        }
+
+        #hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Featured Pets Section */
+        .featured-pets {
+            padding: 50px 20px;
+            background: linear-gradient(rgba(39, 41, 61, 0.954), rgba(39, 41, 61, 0.817)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .featured-pets h2 {
+            text-align: center;
+            color: #ff69b4;
+            margin-bottom: 40px;
+        }
+
+        .pets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .pet-card {
+            background: #1a1a2e;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .pet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .pet-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pet-info h3 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+
+        /* Why Adopt Section */
+        .why-adopt {
+            background: linear-gradient(rgba(26, 26, 46, 0.847), rgba(26, 26, 46, 0.92)),
+                        url('assets/images/pets-collage.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .why-adopt h2 {
+            color: #ff69b4;
+            margin-bottom: 40px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: #27293d;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        /* AI Section Styling */
+        #AIRecommendationsss-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                        url('assets/images/ai-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #AIRecommendationsss-section h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn-adopt, .cta-button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn-adopt:hover, .cta-button:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Navigation Updates */
+        nav {
+            background-color: rgba(26, 26, 46, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        /* Footer Enhancement */
+        footer {
+            background: linear-gradient(rgba(26, 26, 46, 0.886), rgba(26, 26, 46, 0.904)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #ff69b4;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            margin: 0 15px;
+            font-size: 1.2rem;
+            color: #ff69b4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff1493;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero-section">Home</a></li>
+            <li><a href="adopt.html">Adopt</a></li>
+            <li><a href="ai-recommendation.html">AI Recommendations</a></li>
+            <li><a href="why-adopt.html">Why Adopt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero-section">
+        <h1>Welcome to PettingPets! 🐾</h1>
+        <p>Give a Forever Home to a Furry Friend</p>
+        <a href="adopt.html" class="btn-adopt">Find Your Perfect Companion</a>
+    </header>
+
+    <!-- Featured Pets Section -->
+    <section class="featured-pets">
+        <h2>Meet Our Adorable Friends</h2>
+        <div class="pets-grid">
+            <div class="pet-card">
+                <img src="assets/images/dog1.jpg" alt="Cute Dog">
+                <div class="pet-info">
+                    <h3>Butter</h3>
+                    <p>Loving and Playful</p>
+                    <a href="adopt.html" class="btn-adopt">Meet Me</a>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="assets/images/cat1.jpg" alt="Sweet Cat">
+                <div class="pet-info">
+                    <h3>Fluffy</h3>
+                    <p>Gentle and Affectionate</p>
+                    <a href="adopt.html" class="btn-adopt">Meet Me</a>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="assets/images/kitt1.jpg" alt="Playful Kitten">
+                <div class="pet-info">
+                    <h3>Lolly</h3>
+                    <p>Energetic and Fun</p>
+                    <a href="adopt.html" class="btn-adopt">Meet Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Adopt Section -->
+    <section id="why-adopt" class="why-adopt">
+        <h2>Why Choose Adoption?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-heart"></i>
+                <h3>Save a Life</h3>
+                <p>By adopting, you're giving a deserving pet a second chance at happiness and love.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-home"></i>
+                <h3>Create a Forever Home</h3>
+                <p>Provide a loving, permanent home to a pet who needs it most.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-paw"></i>
+                <h3>Unconditional Love</h3>
+                <p>Adopted pets offer endless love, loyalty, and companionship.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Fight Puppy Mills</h3>
+                <p>Support ethical pet adoption and help end inhumane breeding practices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Recommendations Section -->
+    <section id="AIRecommendationsss-section">
+        <h2>Find Your Perfect Match with AI</h2>
+        <p>Let our intelligent system help you discover the ideal pet based on your lifestyle.</p>
+        <a href="ai-recommendation.html" class="cta-button">Try AI Matching</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>PettingPets</h3>
+        <p>Making Tails Wag & Hearts Purr</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/pujamazumdar/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/_puja_m27_/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/__sweetooth_" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 PettingPets | All Rights Reserved</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

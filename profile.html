@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Details</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(26, 26, 46, 0.95), rgba(26, 26, 46, 0.95)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+            margin: 0;
+            padding-top: 80px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff69b4;
+            color: #ffffff;
+        }
+
+        /* Profile Section */
+        .adoption-profile {
+            background: linear-gradient(rgba(39, 41, 61, 0.9), rgba(39, 41, 61, 0.9)),
+                        url('assets/images/pets-collage.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .adoption-profile img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            object-fit: cover;
+            border: 3px solid #ff69b4;
+        }
+
+        .adoption-profile h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .adoption-profile p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .adoption-profile button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .adoption-profile button:hover {
+            background-color: #ff1493;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background: linear-gradient(rgba(39, 41, 61, 0.98), rgba(39, 41, 61, 0.98)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .close, .close-visit {
+            color: #ff69b4;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover, .close-visit:hover {
+            color: #ff1493;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff69b4;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ff69b4;
+            border-radius: 8px;
+            background-color: #1a1a2e;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input[type="date"] {
+            color: white;
+        }
+
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: #ff69b4;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff1493;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #ff69b4;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #ff69b4;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff1493;
+        }
+
+        /* Sweet Alert Customization */
+        .swal2-popup {
+            background: #27293d !important;
+            color: #ffffff !important;
+        }
+
+        .swal2-title, .swal2-html-container {
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="adopt.html">Adopt</a></li>
+            <li><a href="ai-recommendation.html">AI Recommendation</a></li>
+            <li><a href="why-adopt.html">Why Adopt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Adoption Profile Section -->
+    <section class="adoption-profile">
+        <img src="assets/images/laughy.jpg" alt="Adopted Pet">
+        <h2>Congratulations on Choosing a New Friend!</h2>
+        <p><strong>Pet Name:</strong> Laughy</p>
+        <p><strong>Age:</strong> 2 Years</p>
+        <p><strong>Breed:</strong> Labrador Retriever</p>
+        <p>🐾 "Hi! I can’t wait to wag my tail and bring joy to your life. Let’s make some paw-some memories together!"</p>
+        <button onclick="confirmAdoption()">Confirm Adoption</button>
+        <button onclick="scheduleVisit()">Schedule a Visit</button>
+    </section>
+
+    <!-- Add this modal form HTML just before the footer -->
+    <div id="adoptionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Complete Your Adoption Request</h3>
+            <form id="adoptionForm" onsubmit="submitAdoptionForm(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Complete Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Adoption Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add this new modal form HTML just before the footer, after the adoption modal -->
+    <div id="visitModal" class="modal">
+        <div class="modal-content">
+            <span class="close-visit">&times;</span>
+            <h3>Schedule a Visit</h3>
+            <form id="visitForm" onsubmit="submitVisitForm(event)">
+                <div class="form-group">
+                    <label for="visitorName">Full Name:</label>
+                    <input type="text" id="visitorName" name="visitorName" required>
+                </div>
+                <div class="form-group">
+                    <label for="visitorPhone">Phone Number:</label>
+                    <input type="tel" id="visitorPhone" name="visitorPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Visit Date:</label>
+                    <input type="date" id="preferredDate" name="preferredDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="preferredTime">Preferred Time:</label>
+                    <select id="preferredTime" name="preferredTime" required>
+                        <option value="">Select a time</option>
+                        <option value="morning">Morning (9 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                        <option value="evening">Evening (4 PM - 7 PM)</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Schedule Visit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PettingPets | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function confirmAdoption() {
+            document.getElementById('adoptionModal').style.display = 'block';
+        }
+
+        // Close modal when clicking the X
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('adoptionModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const adoptionModal = document.getElementById('adoptionModal');
+            const visitModal = document.getElementById('visitModal');
+            if (event.target == adoptionModal) {
+                adoptionModal.style.display = 'none';
+            }
+            if (event.target == visitModal) {
+                visitModal.style.display = 'none';
+            }
+        }
+
+        function submitAdoptionForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                petDetails: getQueryParams()
+            };
+
+            // Close the modal
+            document.getElementById('adoptionModal').style.display = 'none';
+            
+            // Show elegant success message
+            Swal.fire({
+                title: 'Adoption Request Received! 🎉',
+                html: `
+                    <div style="margin: 20px 0;">
+                        <p>Dear ${formData.fullName},</p>
+                        <p>Thank you for taking the first step towards giving a forever home to your new friend!</p>
+                        <p>The nearest shelter will contact you within 24 hours to proceed with the adoption process.</p>
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonText: 'Looking Forward!',
+                confirmButtonColor: '#ff69b4',
+                background: '#27293d',
+                color: '#ffffff'
+            });
+        }
+
+        function scheduleVisit() {
+            document.getElementById('visitModal').style.display = 'block';
+        }
+
+        // Add close handler for visit modal
+        document.querySelector('.close-visit').onclick = function() {
+            document.getElementById('visitModal').style.display = 'none';
+        }
+
+        function submitVisitForm(event) {
+            event.preventDefault();
+            
+            const visitData = {
+                fullName: document.getElementById('visitorName').value,
+                phone: document.getElementById('visitorPhone').value,
+                preferredDate: document.getElementById('preferredDate').value,
+                preferredTime: document.getElementById('preferredTime').value,
+                petDetails: getQueryParams()
+            };
+
+            // Close the modal
+            document.getElementById('visitModal').style.display = 'none';
+            
+            // Show elegant success message
+            Swal.fire({
+                title: 'Visit Scheduled Successfully! 🐾',
+                html: `
+                    <div style="margin: 20px 0;">
+                        <p>Dear ${visitData.fullName},</p>
+                        <p>We're excited to meet you on ${new Date(visitData.preferredDate).toLocaleDateString()} during the ${visitData.preferredTime} slot!</p>
+                        <p>We'll send a confirmation SMS to ${visitData.phone} shortly.</p>
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonText: 'Can\'t Wait!',
+                confirmButtonColor: '#ff69b4',
+                background: '#27293d',
+                color: '#ffffff'
+            });
+        }
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name'),
+                age: params.get('age'),
+                breed: params.get('breed'),
+                image: params.get('image')
+            };
+        }
+
+        function displayPetProfile() {
+            const pet = getQueryParams();
+            document.querySelector('.adoption-profile img').src = pet.image;
+            document.querySelector('.adoption-profile h2').innerText = `Congratulations on Choosing a New Friend!`;
+            document.querySelector('.adoption-profile p:nth-of-type(1)').innerHTML = `<strong>Pet Name:</strong> ${pet.name}`;
+            document.querySelector('.adoption-profile p:nth-of-type(2)').innerHTML = `<strong>Age:</strong> ${pet.age}`;
+            document.querySelector('.adoption-profile p:nth-of-type(3)').innerHTML = `<strong>Breed:</strong> ${pet.breed}`;
+            document.querySelector('.adoption-profile p:nth-of-type(4)').innerText = `🐾 "Hi! I can’t wait to wag my tail and bring joy to your life. Let’s make some paw-some memories together!"`;
+        }
+
+        window.onload = displayPetProfile;
+    </script>
+
+</body>
+</html>

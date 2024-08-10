@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet AI Recommendations</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(26, 26, 46, 0.95), rgba(26, 26, 46, 0.95)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+            margin: 0;
+            padding-top: 80px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff69b4;
+            color: #ffffff;
+        }
+
+        /* Main Content */
+        h1, h2 {
+            color: #ff69b4;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        /* Form Styling */
+        form {
+            background: linear-gradient(rgba(39, 41, 61, 0.95), rgba(39, 41, 61, 0.95)),
+                        url('assets/images/pets-collage.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff69b4;
+            font-weight: bold;
+        }
+
+        form select, form input[type="checkbox"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ff69b4;
+            border-radius: 8px;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        form button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #ff1493;
+            transform: translateY(-2px);
+        }
+
+        /* Results Section */
+        #pet-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #pet-list li {
+            background: linear-gradient(rgba(39, 41, 61, 0.9), rgba(39, 41, 61, 0.9)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        #pet-list img {
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)),
+                        url('assets/images/paw-pattern.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #ff69b4;
+            margin-top: 50px;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: #ff69b4;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff1493;
+        }
+
+        /* Recommendations Container */
+        #recommendations-container div > div {
+            background: linear-gradient(rgba(39, 41, 61, 0.9), rgba(39, 41, 61, 0.9)),
+                        url('assets/images/pets-collage.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="adopt.html">Adopt</a></li>
+            <li><a href="ai-recommendation.html">AI Recommendation</a></li>
+            <li><a href="why-adopt.html">Why Adopt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Find Your Perfect Pet Match 🐾</h1>
+        <p style="text-align: center; margin-bottom: 30px;">Let our AI help you find the perfect companion based on your preferences!</p>
+
+        <form id="petPreferencesForm" onsubmit="getRecommendations(event)">
+            <div class="form-group">
+                <label for="size">Preferred Pet Size:</label>
+                <select id="size" name="size" required>
+                    <option value="">Select Size</option>
+                    <option value="very small">Very Small</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="activity_level">Preferred Activity Level:</label>
+                <select id="activity_level" name="activity_level" required>
+                    <option value="">Select Activity Level</option>
+                    <option value="low">Low Energy</option>
+                    <option value="moderate">Moderate Energy</option>
+                    <option value="high">High Energy</option>
+                </select>
+            </div>
+
+            <button type="submit">Get AI Recommendations</button>
+        </form>
+
+        <div id="recommendations-container" style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+            <!-- AI recommendations will be displayed here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PettingPets | All Rights Reserved</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/pujamazumdar/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/_puja_m27_/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/__sweetooth_" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        async function getRecommendations(event) {
+            event.preventDefault();
+            
+            const size = document.getElementById('size').value;
+            const activity_level = document.getElementById('activity_level').value;
+            
+            // Show loading state
+            document.getElementById('recommendations-container').innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <p style="color: #ff69b4;">Loading recommendations...</p>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch('/api/get_AIRecommendations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        size: size.replace(/\s+/g, '_'),
+                        activity_level
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                displayRecommendations(data);
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('recommendations-container').innerHTML = `
+                    <div style="background-color: #27293d; padding: 20px; border-radius: 15px; margin-top: 20px; text-align: center;">
+                        <p style="color: #ff69b4;">Oops! Something went wrong. Please try again later.</p>
+                        <p style="color: #ff69b4; font-size: 0.8em;">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayRecommendations(data) {
+            const container = document.getElementById('recommendations-container');
+            
+            if (data.status === 'no_matches') {
+                container.innerHTML = `
+                    <div style="background-color: #27293d; padding: 20px; border-radius: 15px; margin-top: 20px; text-align: center;">
+                        <p style="color: #ff69b4;">${data.message}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (data.status === 'success') {
+                const recommendations = data.recommendations;
+                let html = '<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">';
+                
+                recommendations.forEach(pet => {
+                    html += `
+                        <div style="background-color: #27293d; 
+                                    border-radius: 20px; 
+                                    overflow: hidden; 
+                                    width: 280px;
+                                    transform: translateY(0);
+                                    transition: all 0.3s ease;
+                                    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.15);
+                                    &:hover {
+                                        transform: translateY(-10px);
+                                        box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+                                    }">
+                            <div style="position: relative; overflow: hidden;">
+                                <img src="${pet.image}" 
+                                     alt="${pet.name}" 
+                                     style="width: 100%; 
+                                            height: 200px; 
+                                            object-fit: cover;
+                                            transition: transform 0.5s ease;"
+                                >
+                                <div style="position: absolute; 
+                                            top: 15px; 
+                                            right: 15px; 
+                                            background-color: #ff69b4; 
+                                            padding: 8px 15px; 
+                                            border-radius: 20px; 
+                                            font-size: 0.9rem;
+                                            color: white;
+                                            box-shadow: 0 3px 10px rgba(0,0,0,0.2);">
+                                    Perfect Match! 🐾
+                                </div>
+                            </div>
+                            <div style="padding: 25px; text-align: center;">
+                                <h3 style="color: #ff69b4; 
+                                           margin-bottom: 15px; 
+                                           font-size: 1.5rem;
+                                           text-shadow: 0 2px 4px rgba(255,105,180,0.2);">
+                                    ${pet.name}
+                                </h3>
+                                <div style="background: rgba(255,105,180,0.1); 
+                                            padding: 10px; 
+                                            border-radius: 15px; 
+                                            margin-bottom: 15px;">
+                                    <p style="margin: 5px 0; color: #e0e0e0;">Age: ${pet.age}</p>
+                                    <p style="margin: 5px 0; color: #e0e0e0;">Breed: ${pet.breed}</p>
+                                </div>
+                                <p style="margin: 15px 0; 
+                                         line-height: 1.5; 
+                                         color: #ffffff;
+                                         font-size: 0.95rem;">
+                                    ${pet.personality}
+                                </p>
+                                <p style="color: #ff69b4; 
+                                         margin: 15px 0; 
+                                         font-style: italic;
+                                         font-size: 0.9rem;">
+                                    ${pet.aiRecommendation}
+                                </p>
+                                <a href="profile.html?name=${pet.name}&age=${pet.age}&breed=${pet.breed}&image=${pet.image}" 
+                                   style="display: inline-block; 
+                                          background: linear-gradient(45deg, #ff69b4, #ff1493);
+                                          color: white; 
+                                          padding: 12px 30px; 
+                                          border-radius: 25px; 
+                                          text-decoration: none; 
+                                          margin-top: 15px;
+                                          font-weight: bold;
+                                          transition: all 0.3s ease;
+                                          box-shadow: 0 4px 15px rgba(255,105,180,0.3);
+                                          &:hover {
+                                              transform: translateY(-2px);
+                                              box-shadow: 0 6px 20px rgba(255,105,180,0.4);
+                                          }">
+                                    Meet ${pet.name} 💝
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                container.innerHTML = html;
+            }
+        }
+    </script>
+</body>
+</html>
