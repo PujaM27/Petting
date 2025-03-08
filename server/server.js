@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 
 // Import AI recommendations router
 const aiRecommendationsRouter = require('./ai-recommendations');
-app.use('/api', aiRecommendationsRouter);
+app.use('/', aiRecommendationsRouter);
 
 // Handle 404s
 app.use((req, res) => {
